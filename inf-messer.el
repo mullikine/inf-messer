@@ -220,5 +220,21 @@ Most of this is borrowed from python.el"
 
   (use-local-map inf-messer-mode-map))
 
+(defun inf-messer-fz-contacts ()
+  (interactive)
+  (let ((contact
+         (chomp (fz (sn "dos2unix | sed -e 1d -e \\$d -e \\$d" (inf-messer-get-result-from-inf "contacts"))))))
+    (xc contact t)
+    contact))
+
+(defun inf-messer-history (contact)
+  (interactive (list (inf-messer-fz-contacts)))
+
+  (etv (sn "dos2unix | sed -e 1d" (inf-messer-get-result-from-inf (concat "history " (q contact)))))
+  ;; (let ((contact (inf-messer-fz-contacts)))
+  ;;   (etv )
+  ;;   )
+  )
+
 (provide 'inf-messer)
 ;;; inf-messer.el ends here
