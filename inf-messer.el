@@ -55,7 +55,8 @@ inf-messer-mode-hook (in that order)."
         (inf-messer-mode)
         (setq inf-messer-command cmd) 
         (setq inf-messer-buffer "*messer*")
-        (inf-messer-setup-autocompletion))))
+        ;; (inf-messer-setup-autocompletion)
+        )))
   (if (not dont-switch-p)
       (pop-to-buffer "*messer*")))
 
@@ -115,18 +116,18 @@ With argument, position cursor at end of buffer."
 
 (defvar inf-messer-buffer)
 
-(defvar inf-messer-auto-completion-setup-code
-  "function INFMONGO__getCompletions(prefix) {
-      shellAutocomplete(prefix);
-      return(__autocomplete__.join(\";\"));
-  }"
-  "Code executed in inferior messer to setup autocompletion.")
+;; (defvar inf-messer-auto-completion-setup-code
+;;   "function INFMONGO__getCompletions(prefix) {
+;;       shellAutocomplete(prefix);
+;;       return(__autocomplete__.join(\";\"));
+;;   }"
+;;   "Code executed in inferior messer to setup autocompletion.")
 
-(defun inf-messer-setup-autocompletion ()
-  "Function executed to setup autocompletion in inf-messer."
-  (comint-send-string (get-buffer-process inf-messer-buffer) inf-messer-auto-completion-setup-code)
-  (comint-send-string (get-buffer-process inf-messer-buffer) "\n")
-  (define-key inf-messer-mode-map "\t" 'complete-symbol))
+;; (defun inf-messer-setup-autocompletion ()
+;;   "Function executed to setup autocompletion in inf-messer."
+;;   (comint-send-string (get-buffer-process inf-messer-buffer) inf-messer-auto-completion-setup-code)
+;;   (comint-send-string (get-buffer-process inf-messer-buffer) "\n")
+;;   (define-key inf-messer-mode-map "\t" 'complete-symbol))
 
 (defvar inf-messer-prompt "\n> \\|\n.+> "
   "String used to match inf-messer prompt.")
