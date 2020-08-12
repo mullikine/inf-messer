@@ -11,7 +11,7 @@
 
 (let ((loads (get 'inf-messer 'custom-loads))) (if (member '"inf-messer" loads) nil (put 'inf-messer 'custom-loads (cons '"inf-messer" loads))))
 
-(defvar inf-messer-command "/home/shane/scripts/messer" "\
+(defvar inf-messer-command "messer" "\
 Default messer shell command used.")
 
 (custom-autoload 'inf-messer-command "inf-messer" t)

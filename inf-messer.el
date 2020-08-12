@@ -1,38 +1,7 @@
-;;; inf-messer.el --- Run a messer shell process in a buffer
-
-;; Copyright (C) 2013 Tobias Svensson
-
-;; Author: Tobias Svensson
-;; URL: http://github.com/endofunky/inf-messer
-;; Package-Version: 20180408.1338
-;; Created: 1 March 2013
-;; Keywords: databases messerdb
-;; Version: 1.0.0
-
-;; This file is released under the same terms as GNU Emacs.
-
-;; GNU Emacs is free software: you can redistribute it and/or modify
-;; it under the terms of the GNU General Public License as published by
-;; the Free Software Foundation, either version 3 of the License, or
-;; (at your option) any later version.
-
-;; GNU Emacs is distributed in the hope that it will be useful,
-;; but WITHOUT ANY WARRANTY; without even the implied warranty of
-;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-;; GNU General Public License for more details.
-
-;; You should have received a copy of the GNU General Public License
-;; along with GNU Emacs.  If not, see <http://www.gnu.org/licenses/>.
-
 ;;; Commentary:
 
 ;; inf-messer.el provides a REPL buffer connected to a messer shell
 ;; (messer) subprocess.
-
-;; Install
-
-;; $ cd ~/.emacs.d/vendor
-;; $ git clone git://github.com/endofunky/inf-messer.git
 
 ;; In your emacs config:
 
@@ -54,7 +23,7 @@
   :group 'inf-messer)
 
 ;;;###autoload
-(defcustom inf-messer-command "/usr/local/bin/messer 127.0.0.1:27017"
+(defcustom inf-messer-command "messer"
   "Default messer shell command used.")
 
 ;;;###autoload
