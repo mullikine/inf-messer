@@ -45,7 +45,7 @@ Send the current region to the inferior messer process.
 \(fn START END)" t nil)
 
 (autoload 'messer-send-last-sexp-and-go "inf-messer" "\
-Send the previous sexp to the inferior Mongo process.
+Send the previous sexp to the inferior messer process.
 
 \(fn)" t nil)
 

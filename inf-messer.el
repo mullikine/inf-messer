@@ -109,7 +109,7 @@ inf-messer-mode-hook (in that order)."
 
 ;;;###autoload
 (defun messer-send-last-sexp-and-go ()
-  "Send the previous sexp to the inferior Mongo process."
+  "Send the previous sexp to the inferior messer process."
   (interactive)
   (messer-send-region-and-go (save-excursion (backward-sexp) (point)) (point)))
 
