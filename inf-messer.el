@@ -1,4 +1,4 @@
-;;; inf-messer.el --- Run a MongoDB shell process in a buffer
+;;; inf-messer.el --- Run a messer shell process in a buffer
 
 ;; Copyright (C) 2013 Tobias Svensson
 
@@ -26,7 +26,7 @@
 
 ;;; Commentary:
 
-;; inf-messer.el provides a REPL buffer connected to a MongoDB shell
+;; inf-messer.el provides a REPL buffer connected to a messer shell
 ;; (messer) subprocess.
 
 ;; Install
@@ -50,12 +50,12 @@
 
 ;;;###autoload
 (defgroup inf-messer nil
-  "Run a MongoDB shell (messer) process in a buffer."
+  "Run a messer shell (messer) process in a buffer."
   :group 'inf-messer)
 
 ;;;###autoload
 (defcustom inf-messer-command "/usr/local/bin/messer 127.0.0.1:27017"
-  "Default MongoDB shell command used.")
+  "Default messer shell command used.")
 
 ;;;###autoload
 (defcustom inf-messer-mode-hook nil
@@ -67,16 +67,16 @@
 
 ;;;###autoload
 (defun inf-messer (cmd &optional dont-switch-p)
-  "Major mode for interacting with an inferior MongoDB shell (messer) process.
+  "Major mode for interacting with an inferior messer shell (messer) process.
 
 The following commands are available:
 \\{inf-messer-mode-map}
 
-A MongoDB shell process can be fired up with M-x inf-messer.
+A messer shell process can be fired up with M-x inf-messer.
 
 Customisation: Entry to this mode runs the hooks on comint-mode-hook and
 inf-messer-mode-hook (in that order)."
-  (interactive (list (read-from-minibuffer "Run MongoDB shell: "
+  (interactive (list (read-from-minibuffer "Run messer shell: "
                                            inf-messer-command)))
 
   (if (not (comint-check-proc "*messer*"))
@@ -92,7 +92,7 @@ inf-messer-mode-hook (in that order)."
 
 ;;;###autoload
 (defun messer-send-region (start end)
-  "Send the current region to the inferior MongoDB process."
+  "Send the current region to the inferior messer process."
   (interactive "r")
   (inf-messer inf-messer-command t)
   (comint-send-region inf-messer-buffer start end)
@@ -100,7 +100,7 @@ inf-messer-mode-hook (in that order)."
 
 ;;;###autoload
 (defun messer-send-region-and-go (start end)
-  "Send the current region to the inferior MongoDB process."
+  "Send the current region to the inferior messer process."
   (interactive "r")
   (inf-messer inf-messer-command t)
   (comint-send-region inf-messer-buffer start end)
@@ -115,25 +115,25 @@ inf-messer-mode-hook (in that order)."
 
 ;;;###autoload
 (defun messer-send-last-sexp ()
-  "Send the previous sexp to the inferior MongoDB process."
+  "Send the previous sexp to the inferior messer process."
   (interactive)
   (messer-send-region (save-excursion (backward-sexp) (point)) (point)))
 
 ;;;###autoload
 (defun messer-send-buffer ()
-  "Send the buffer to the inferior MongoDB process."
+  "Send the buffer to the inferior messer process."
   (interactive)
   (messer-send-region (point-min) (point-max)))
 
 ;;;###autoload
 (defun messer-send-buffer-and-go ()
-  "Send the buffer to the inferior MongoDB process."
+  "Send the buffer to the inferior messer process."
   (interactive)
   (messer-send-region-and-go (point-min) (point-max)))
 
 ;;;###autoload
 (defun switch-to-inf-messer (eob-p)
-  "Switch to the MongoDB process buffer.
+  "Switch to the messer process buffer.
 With argument, position cursor at end of buffer."
   (interactive "P")
   (if (or (and inf-messer-buffer (get-buffer inf-messer-buffer))
@@ -234,7 +234,7 @@ Most of this is borrowed from python.el"
     map))
 
 ;;;###autoload
-(define-derived-mode inf-messer-mode comint-mode "Inferior MongoDB mode"
+(define-derived-mode inf-messer-mode comint-mode "Inferior messer mode"
   (make-local-variable 'font-lock-defaults)
   (setq font-lock-defaults (list js--font-lock-keywords))
 
