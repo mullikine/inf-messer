@@ -14,7 +14,7 @@
 
 ;;; Code:
 
-(require 'js)
+;; (require 'js)
 (require 'comint)
 
 ;;;###autoload
@@ -172,24 +172,25 @@ process in `inf-messer--shell-output-buffer'.  It signals the function
 (defun inf-messer-shell-completion-complete-at-point ()
   "Perform completion at point in inferior-messer.
 Most of this is borrowed from python.el"
-  (let* ((start
-          (save-excursion
-            (with-syntax-table js-mode-syntax-table
-              (let* ((syntax-list (append (string-to-syntax ".")
-					  (string-to-syntax "_")
-					  (string-to-syntax "w"))))
-                (while (member
-                        (car (syntax-after (1- (point)))) syntax-list)
-                  (skip-syntax-backward ".w_")
-                  (when (or (equal (char-before) ?\))
-                            (equal (char-before) ?\"))
-                    (forward-char -1)))
-                (point)))))
-         (end (point)))
-    (list start end
-          (completion-table-dynamic
-           (apply-partially
-            #'inf-messer-get-completions-at-point)))))
+  ;; (let* ((start
+  ;;         (save-excursion
+  ;;           (with-syntax-table js-mode-syntax-table
+  ;;             (let* ((syntax-list (append (string-to-syntax ".")
+	;; 				  (string-to-syntax "_")
+	;; 				  (string-to-syntax "w"))))
+  ;;               (while (member
+  ;;                       (car (syntax-after (1- (point)))) syntax-list)
+  ;;                 (skip-syntax-backward ".w_")
+  ;;                 (when (or (equal (char-before) ?\))
+  ;;                           (equal (char-before) ?\"))
+  ;;                   (forward-char -1)))
+  ;;               (point)))))
+  ;;        (end (point)))
+  ;;   (list start end
+  ;;         (completion-table-dynamic
+  ;;          (apply-partially
+  ;;           #'inf-messer-get-completions-at-point))))
+  )
 
 (defun inf-messer-get-completions-at-point (prefix)
   "Get completions for PREFIX using inf-messer."
@@ -206,13 +207,13 @@ Most of this is borrowed from python.el"
 ;;;###autoload
 (define-derived-mode inf-messer-mode comint-mode "Inferior messer mode"
   (make-local-variable 'font-lock-defaults)
-  (setq font-lock-defaults (list js--font-lock-keywords))
+  ;; (setq font-lock-defaults (list js--font-lock-keywords))
 
-  (make-local-variable 'syntax-propertize-function)
-  (setq syntax-propertize-function #'js-syntax-propertize)
+  ;; (make-local-variable 'syntax-propertize-function)
+  ;; (setq syntax-propertize-function #'js-syntax-propertize)
 
-  (add-hook 'before-change-functions #'js--flush-caches t t)
-  (js--update-quick-match-re)
+  ;; (add-hook 'before-change-functions #'js--flush-caches t t)
+  ;; (js--update-quick-match-re)
 
   (add-to-list (make-local-variable 'comint-dynamic-complete-functions)
                'inf-messer-shell-completion-complete-at-point)
