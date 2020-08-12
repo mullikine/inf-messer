@@ -230,7 +230,10 @@ Most of this is borrowed from python.el"
 (defun inf-messer-history (contact)
   (interactive (list (inf-messer-fz-contacts)))
 
-  (etv (sn "dos2unix | sed -e 1d" (inf-messer-get-result-from-inf (concat "history " (q contact)))))
+  (let ((history)
+        (sn "dos2unix | sed -e 1d" (inf-messer-get-result-from-inf (concat "history " (q contact)))))
+    (etv history)
+    )
   ;; (let ((contact (inf-messer-fz-contacts)))
   ;;   (etv )
   ;;   )
