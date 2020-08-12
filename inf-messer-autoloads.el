@@ -22,12 +22,12 @@ Default messer shell command used.")
 (custom-autoload 'inf-messer-mode-hook "inf-messer" t)
 
 (autoload 'inf-messer "inf-messer" "\
-Major mode for interacting with an inferior MongoDB shell (messer) process.
+Major mode for interacting with an inferior messer shell (messer) process.
 
 The following commands are available:
 \\{inf-messer-mode-map}
 
-A MongoDB shell process can be fired up with M-x inf-messer.
+A messer shell process can be fired up with M-x inf-messer.
 
 Customisation: Entry to this mode runs the hooks on comint-mode-hook and
 inf-messer-mode-hook (in that order).
@@ -35,12 +35,12 @@ inf-messer-mode-hook (in that order).
 \(fn CMD &optional DONT-SWITCH-P)" t nil)
 
 (autoload 'messer-send-region "inf-messer" "\
-Send the current region to the inferior MongoDB process.
+Send the current region to the inferior messer process.
 
 \(fn START END)" t nil)
 
 (autoload 'messer-send-region-and-go "inf-messer" "\
-Send the current region to the inferior MongoDB process.
+Send the current region to the inferior messer process.
 
 \(fn START END)" t nil)
 
@@ -50,22 +50,22 @@ Send the previous sexp to the inferior Mongo process.
 \(fn)" t nil)
 
 (autoload 'messer-send-last-sexp "inf-messer" "\
-Send the previous sexp to the inferior MongoDB process.
+Send the previous sexp to the inferior messer process.
 
 \(fn)" t nil)
 
 (autoload 'messer-send-buffer "inf-messer" "\
-Send the buffer to the inferior MongoDB process.
+Send the buffer to the inferior messer process.
 
 \(fn)" t nil)
 
 (autoload 'messer-send-buffer-and-go "inf-messer" "\
-Send the buffer to the inferior MongoDB process.
+Send the buffer to the inferior messer process.
 
 \(fn)" t nil)
 
 (autoload 'switch-to-inf-messer "inf-messer" "\
-Switch to the MongoDB process buffer.
+Switch to the messer process buffer.
 With argument, position cursor at end of buffer.
 
 \(fn EOB-P)" t nil)
