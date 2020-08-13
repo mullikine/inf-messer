@@ -260,5 +260,13 @@ Most of this is borrowed from python.el"
          (inf-messer-get-result-from-inf (concat "message " (q contact) " " message))))
     (etv sentout)))
 
+(defun inf-messer-reply (contact path message)
+  (interactive (list (inf-messer-fz-contacts) (read-string "m: ")
+                     (read-pat "m: ")))
+
+  (let ((sentout
+         (inf-messer-get-result-from-inf (concat "message " (q contact) " " message))))
+    (etv sentout)))
+
 (provide 'inf-messer)
 ;;; inf-messer.el ends here
