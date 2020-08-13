@@ -254,6 +254,10 @@ Most of this is borrowed from python.el"
   (interactive)
   (save-window-excursion (inf-messer "messer" nil)))
 
+(defun start-messer-if-not-started-but-wait ()
+  (interactive)
+  (save-window-excursion (inf-messer "messer" nil)))
+
 (defun start-messer ()
   (interactive)
   (inf-messer "messer" nil))
