@@ -304,8 +304,13 @@ Most of this is borrowed from python.el"
     (split-string s "\n"))
    "\n"))
 
-(defun inf-messer-recent-contacts-sh ()
-  (sn "sed \"s/^[^ ]\\+ \\(.*\\) \(.*/\\1/\"" (s-filter-lines (lambda (s) (string-match-p "unread" s)) (inf-messer-recent))))
+(defun filter-unread (s)
+  (sn "sed \"s/^[^ ]\\+ \\(.*\\) \(.*/\\1/\"" (s-filter-lines (lambda (s) (string-match-p "unread" s)) s)))
+
+(defun inf-messer-recent-contacts-sh (&optional unread)
+  (if unread
+      (filter-unread (inf-messer-recent))
+    (inf-messer-recent)))
 
 (defun inf-messer-recent-contacts ()
   (interactive)
