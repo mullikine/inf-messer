@@ -305,10 +305,13 @@ Most of this is borrowed from python.el"
    "\n"))
 
 (defun extract-name-from-recent-item (s)
-  (sn "sed \"s/^[^ ]\\+ \\(.*\\) \(.*/\\1/\"" s))
+  ;; (sn "sed \"s/^[^ ]\\+ \\(.*\\) \(.*/\\1/\"" s)
+  (sed "s/^\\[[0-9]\\+\\] //" (sed "s/ (.*//" s))
+  ;; (sed "s/^\\[[0-9]\\+\\] //" s))
+  )
 
-(defun filter-unread (input)
-  (s-filter-lines (lambda (s) (string-match-p "unread" s)) input))
+  (defun filter-unread (input)
+    (s-filter-lines (lambda (s) (string-match-p "unread" s)) input))
 
 (defun inf-messer-recent-contacts-sh (&optional unread)
   (extract-name-from-recent-item (if unread
