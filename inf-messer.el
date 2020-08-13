@@ -304,8 +304,12 @@ Most of this is borrowed from python.el"
     (split-string s "\n"))
    "\n"))
 
-(defun inf-messer-recent-contacts ()
+(defun inf-messer-recent-contacts-sh ()
   (sn "sed \"s/^[^ ]\\+ \\(.*\\) \(.*/\\1/\"" (s-filter-lines (lambda (s) (string-match-p "unread" s)) (inf-messer-recent))))
+
+(defun inf-messer-recent-contacts ()
+  (interactive)
+  (etv (inf-messer-recent-contacts-sh)))
 
 ;; (etv (string-join (-filter (lambda (s) (string-match-p "unread" s)) (split-string (inf-messer-recent) "\n")) "\n"))
 
@@ -317,7 +321,7 @@ Most of this is borrowed from python.el"
     sentout))
 
 (defun inf-messer-reply (contact message)
-  (interactive (list (fz (inf-messer-recent-contacts)) (read-string "m: ")))
+  (interactive (list (fz (inf-messer-recent-contacts-sh)) (read-string "m: ")))
 
   (let ((sentout
          (inf-messer-get-result-from-inf (concat "message " (q contact) " " message))))
