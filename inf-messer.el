@@ -220,19 +220,41 @@ Most of this is borrowed from python.el"
 
   (use-local-map inf-messer-mode-map))
 
+(defun inf-messer-fz-contacts-sh ()
+  (sn "dos2unix | sed -e 1d -e \\$d -e \\$d" (inf-messer-get-result-from-inf "contacts")))
+
 (defun inf-messer-fz-contacts ()
   (interactive)
   (let ((contact
-         (chomp (fz (sn "dos2unix | sed -e 1d -e \\$d -e \\$d" (inf-messer-get-result-from-inf "contacts"))))))
+         (chomp (fz (inf-messer-fz-contacts-sh)))))
     ;; (xc contact t)
     contact))
+
+(defun inf-messer-fz-threads-sh ()
+  (sn "dos2unix | sed -e 1d -e \\$d" (inf-messer-get-result-from-inf "threads")))
+
+(defun inf-messer-fz-threads ()
+  (interactive)
+  (let ((contact
+         (chomp (fz (inf-messer-fz-threads-sh)))))
+    ;; (xc contact t)
+    contact))
+
+(defun inf-messer-fz-contacts-and-threads-sh ()
+  (sn "sort"
+      (concat (awk1 (inf-messer-fz-contacts-sh))
+              (awk1 (inf-messer-fz-threads-sh)))))
+
+(defun inf-messer-fz-contacts-and-threads ()
+  (interactive)
+  (chomp (fz (inf-messer-fz-contacts-and-threads-sh))))
 
 (defun start-messer-if-not-started ()
   (interactive)
   (save-window-excursion (inf-messer "messer" nil)))
 
 (defun inf-messer-history (contact)
-  (interactive (list (inf-messer-fz-contacts)))
+  (interactive (list (inf-messer-fz-contacts-and-threads)))
 
   (let ((history
          ;; (sn "dos2unix | sed -e 1d" (inf-messer-get-result-from-inf (concat "history " (q contact))))
@@ -244,7 +266,7 @@ Most of this is borrowed from python.el"
   )
 
 (defun inf-messer-send (contact message)
-  (interactive (list (inf-messer-fz-contacts) (read-string "m: ")))
+  (interactive (list (inf-messer-fz-contacts-and-threads) (read-string "m: ")))
 
   (let ((sentout
          ;; (sn "dos2unix | sed -e 1d" (inf-messer-get-result-from-inf (concat "history " (q contact))))
