@@ -253,6 +253,10 @@ Most of this is borrowed from python.el"
   (interactive)
   (save-window-excursion (inf-messer "messer" nil)))
 
+(defun start-messer ()
+  (interactive)
+  (inf-messer "messer" nil))
+
 (defun inf-messer-history (contact)
   (interactive (list (inf-messer-fz-contacts-and-threads)))
 
