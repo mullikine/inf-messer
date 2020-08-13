@@ -282,12 +282,16 @@ Most of this is borrowed from python.el"
   ;;   )
   )
 
-(defun inf-messer-send-file (contact path message)
-  (interactive (list (inf-messer-fz-contacts) (read-string "m: ")
-                     (read-pat "m: ")))
+(defun inf-messer-send-file (contact fp message)
+  (interactive (list
+                (inf-messer-fz-contacts)
+                (read-file-name "fp: ")
+                (read-string "m: ")))
 
   (let ((sentout
-         (inf-messer-get-result-from-inf (concat "message " (q contact) " " message))))
+         (inf-messer-get-result-from-inf (concat "file " (q contact)
+                                                 " "
+                                                 (q fp) " " message))))
     (etv sentout)))
 
 (defun inf-messer-recent ()
