@@ -227,6 +227,8 @@ Most of this is borrowed from python.el"
     ;; (xc contact t)
     contact))
 
+(defun start-messer-if-not-started)
+
 (defun inf-messer-history (contact)
   (interactive (list (inf-messer-fz-contacts)))
 
@@ -258,6 +260,13 @@ Most of this is borrowed from python.el"
 
   (let ((sentout
          (inf-messer-get-result-from-inf (concat "message " (q contact) " " message))))
+    (etv sentout)))
+
+(defun inf-messer-recent ()
+  (interactive)
+
+  (let ((sentout
+         (inf-messer-get-result-from-inf (concat "recent"))))
     (etv sentout)))
 
 (defun inf-messer-reply (contact path message)
