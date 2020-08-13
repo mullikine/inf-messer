@@ -224,7 +224,7 @@ Most of this is borrowed from python.el"
   (interactive)
   (let ((contact
          (chomp (fz (sn "dos2unix | sed -e 1d -e \\$d -e \\$d" (inf-messer-get-result-from-inf "contacts"))))))
-    (xc contact t)
+    ;; (xc contact t)
     contact))
 
 (defun inf-messer-history (contact)
