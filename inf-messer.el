@@ -317,7 +317,7 @@ Most of this is borrowed from python.el"
   (interactive)
 
   (let ((sentout
-         (s-replace-regexp "\r+" "" (sn "dos2unix | sed -e 1d" (inf-messer-get-result-from-inf (concat "recent"))))))
+         (s-replace-regexp "\r+" "" (sn "dos2unix | sed -e 1d" (inf-messer-get-result-from-inf (concat "recent 1000000"))))))
     sentout))
 
 (defun inf-messer-reply (contact message)
