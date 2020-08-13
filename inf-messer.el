@@ -312,9 +312,9 @@ Most of this is borrowed from python.el"
       (filter-unread (inf-messer-recent))
     (inf-messer-recent)))
 
-(defun inf-messer-recent-contacts ()
+(defun inf-messer-recent-contacts (&optional unread)
   (interactive)
-  (etv (inf-messer-recent-contacts-sh)))
+  (etv (inf-messer-recent unread)))
 
 ;; (etv (string-join (-filter (lambda (s) (string-match-p "unread" s)) (split-string (inf-messer-recent) "\n")) "\n"))
 
