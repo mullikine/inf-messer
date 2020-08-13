@@ -243,7 +243,8 @@ Most of this is borrowed from python.el"
 (defun inf-messer-fz-contacts-and-threads-sh ()
   (sn "sort"
       (concat (awk1 (inf-messer-fz-contacts-sh))
-              (awk1 (inf-messer-fz-threads-sh)))))
+              (awk1 (inf-messer-fz-threads-sh))
+              "Shane Mulligan\n")))
 
 (defun inf-messer-fz-contacts-and-threads ()
   (interactive)
@@ -284,7 +285,7 @@ Most of this is borrowed from python.el"
 
 (defun inf-messer-send-file (contact fp message)
   (interactive (list
-                (inf-messer-fz-contacts)
+                (inf-messer-fz-contacts-and-threads)
                 (read-file-name "fp: ")
                 (read-string "m: ")))
 
@@ -298,7 +299,7 @@ Most of this is borrowed from python.el"
   (interactive)
 
   (let ((sentout
-         (inf-messer-get-result-from-inf (concat "recent"))))
+         (s-replace-regexp "\r+" "" (sn "dos2unix | sed -e 1d" (inf-messer-get-result-from-inf (concat "recent"))))))
     (etv sentout)))
 
 (defun inf-messer-reply (contact path message)
