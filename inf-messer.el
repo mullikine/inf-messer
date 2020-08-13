@@ -295,11 +295,16 @@ Most of this is borrowed from python.el"
                                                  (q fp) " " message))))
     (etv sentout)))
 
+(defun s-filter-lines (pred s)
+  (string-join "\n" (-filter pred (split-string s "\n"))))
+
+(s-filter-lines (lambda (s) (string-match-p "unread" s)) (inf-messer-recent))
+
 (defun inf-messer-recent ()
   (interactive)
 
   (let ((sentout
-         (s-replace-regexp "\r+" "" (sn "dos2unix | sed -e 1d" (inf-messer-get-result-from-inf (concat "recent"))))))
+         (s-filter-lines ) (s-replace-regexp "\r+" "" (sn "dos2unix | sed -e 1d" (inf-messer-get-result-from-inf (concat "recent"))))))
     (etv sentout)))
 
 (defun inf-messer-reply (contact path message)
