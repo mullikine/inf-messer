@@ -302,7 +302,7 @@ Most of this is borrowed from python.el"
     (split-string s "\n"))
    "\n"))
 
-(defun recent-contacts ()
+(defun inf-messer-recent-contacts ()
   (sn "sed \"s/^[^ ]\\+ \\(.*\\) \(.*/\\1/\"" (s-filter-lines (lambda (s) (string-match-p "unread" s)) (inf-messer-recent))))
 
 ;; (etv (string-join (-filter (lambda (s) (string-match-p "unread" s)) (split-string (inf-messer-recent) "\n")) "\n"))
@@ -314,9 +314,8 @@ Most of this is borrowed from python.el"
          (s-replace-regexp "\r+" "" (sn "dos2unix | sed -e 1d" (inf-messer-get-result-from-inf (concat "recent"))))))
     sentout))
 
-(defun inf-messer-reply (contact path message)
-  (interactive (list (inf-messer-fz-contacts) (read-string "m: ")
-                     (read-pat "m: ")))
+(defun inf-messer-reply (contact message)
+  (interactive (list (fz (inf-messer-recent-contacts)) (read-string "m: ")))
 
   (let ((sentout
          (inf-messer-get-result-from-inf (concat "message " (q contact) " " message))))
