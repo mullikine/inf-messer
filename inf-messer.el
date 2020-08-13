@@ -239,5 +239,18 @@ Most of this is borrowed from python.el"
   ;;   )
   )
 
+(defun inf-messer-send (contact message)
+  (interactive (list (inf-messer-fz-contacts) (read-string "m: ")))
+
+  (let ((sentout
+         ;; (sn "dos2unix | sed -e 1d" (inf-messer-get-result-from-inf (concat "history " (q contact))))
+         ;; (s-replace-regexp "\r+" "" (sn "dos2unix | sed -e 1d" (inf-messer-get-result-from-inf (concat "message " (q contact) " " message))))
+         (inf-messer-get-result-from-inf (concat "message " (q contact) " " message))))
+    (etv sentout))
+  ;; (let ((contact (inf-messer-fz-contacts)))
+  ;;   (etv )
+  ;;   )
+  )
+
 (provide 'inf-messer)
 ;;; inf-messer.el ends here
