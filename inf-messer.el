@@ -296,16 +296,23 @@ Most of this is borrowed from python.el"
     (etv sentout)))
 
 (defun s-filter-lines (pred s)
-  (string-join "\n" (-filter pred (split-string s "\n"))))
+  (string-join
+   (-filter
+    pred
+    (split-string s "\n"))
+   "\n"))
 
-(s-filter-lines (lambda (s) (string-match-p "unread" s)) (inf-messer-recent))
+(defun recent-contacts ()
+  (sn "sed \"s/^[^ ]\\+ \\(.*\\) \(.*/\\1/\"" (s-filter-lines (lambda (s) (string-match-p "unread" s)) (inf-messer-recent))))
+
+;; (etv (string-join (-filter (lambda (s) (string-match-p "unread" s)) (split-string (inf-messer-recent) "\n")) "\n"))
 
 (defun inf-messer-recent ()
   (interactive)
 
   (let ((sentout
-         (s-filter-lines ) (s-replace-regexp "\r+" "" (sn "dos2unix | sed -e 1d" (inf-messer-get-result-from-inf (concat "recent"))))))
-    (etv sentout)))
+         (s-replace-regexp "\r+" "" (sn "dos2unix | sed -e 1d" (inf-messer-get-result-from-inf (concat "recent"))))))
+    sentout))
 
 (defun inf-messer-reply (contact path message)
   (interactive (list (inf-messer-fz-contacts) (read-string "m: ")
