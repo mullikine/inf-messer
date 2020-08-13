@@ -304,17 +304,20 @@ Most of this is borrowed from python.el"
     (split-string s "\n"))
    "\n"))
 
-(defun filter-unread (s)
-  (sn "sed \"s/^[^ ]\\+ \\(.*\\) \(.*/\\1/\"" (s-filter-lines (lambda (s) (string-match-p "unread" s)) s)))
+(defun extract-name-from-recent-item (s)
+  (sn "sed \"s/^[^ ]\\+ \\(.*\\) \(.*/\\1/\"" s))
+
+(defun filter-unread (input)
+  (s-filter-lines (lambda (s) (string-match-p "unread" s)) input))
 
 (defun inf-messer-recent-contacts-sh (&optional unread)
-  (if unread
-      (filter-unread (inf-messer-recent))
-    (inf-messer-recent)))
+  (extract-name-from-recent-item (if unread
+                                     (filter-unread (inf-messer-recent))
+                                   (inf-messer-recent))))
 
 (defun inf-messer-recent-contacts (&optional unread)
   (interactive)
-  (etv (inf-messer-recent unread)))
+  (etv (inf-messer-recent-contacts-sh unread)))
 
 ;; (etv (string-join (-filter (lambda (s) (string-match-p "unread" s)) (split-string (inf-messer-recent) "\n")) "\n"))
 
