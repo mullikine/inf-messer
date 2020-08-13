@@ -263,7 +263,7 @@ Most of this is borrowed from python.el"
 
   (let ((history
          ;; (sn "dos2unix | sed -e 1d" (inf-messer-get-result-from-inf (concat "history " (q contact))))
-         (s-replace-regexp "\r+" "" (sn "dos2unix | sed -e 1d" (inf-messer-get-result-from-inf (concat "history " (q contact) " 10000"))))))
+         (s-replace-regexp "\r+" "" (sn "dos2unix | sed -e 1d" (inf-messer-get-result-from-inf (concat "history " (q contact) " 1000000"))))))
     (etv history))
   ;; (let ((contact (inf-messer-fz-contacts)))
   ;;   (etv )
