@@ -334,6 +334,7 @@ Most of this is borrowed from python.el"
     sentout))
 
 (defun inf-messer-recent ()
+  (interactive)
   (etv (inf-messer-recent-sh)))
 
 (defun inf-messer-reply (contact message)
