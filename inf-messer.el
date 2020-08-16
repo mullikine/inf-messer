@@ -319,21 +319,22 @@ Most of this is borrowed from python.el"
 
 (defun inf-messer-recent-contacts-sh (&optional unread)
   (extract-name-from-recent-item (if unread
-                                     (filter-unread (inf-messer-recent))
-                                   (inf-messer-recent))))
+                                     (filter-unread (inf-messer-recent-sh))
+                                   (inf-messer-recent-sh))))
 
 (defun inf-messer-recent-contacts (&optional unread)
   (interactive)
   (etv (inf-messer-recent-contacts-sh unread)))
 
-;; (etv (string-join (-filter (lambda (s) (string-match-p "unread" s)) (split-string (inf-messer-recent) "\n")) "\n"))
+;; (etv (string-join (-filter (lambda (s) (string-match-p "unread" s)) (split-string (inf-messer-recent-sh) "\n")) "\n"))
 
-(defun inf-messer-recent ()
-  (interactive)
-
+(defun inf-messer-recent-sh ()
   (let ((sentout
          (s-replace-regexp "\r+" "" (sn "dos2unix | sed -e 1d" (inf-messer-get-result-from-inf (concat "recent 1000000"))))))
     sentout))
+
+(defun inf-messer-recent ()
+  (etv (inf-messer-recent-sh)))
 
 (defun inf-messer-reply (contact message)
   (interactive (list (fz (inf-messer-recent-contacts-sh)) (read-string "m: ")))
