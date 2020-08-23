@@ -277,7 +277,7 @@ Most of this is borrowed from python.el"
   )
 
 (defun inf-messer-send (contact message)
-  (interactive (let ((contact (inf-messer-fz-contacts-and-threads))) (list contact (read-string (concat "send to " contact ": ")))))
+  (interactive (let ((contact (inf-messer-fz-contacts-and-threads))) (list contact (read-string (concat "Send to " contact ": ")))))
 
   (let ((sentout
          ;; (sn "dos2unix | sed -e 1d" (inf-messer-get-result-from-inf (concat "history " (q contact))))
