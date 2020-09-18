@@ -268,11 +268,11 @@ Most of this is borrowed from python.el"
   (let ((history
          ;; (sn "dos2unix | sed -e 1d" (inf-messer-get-result-from-inf (concat "history " (q contact))))
          (s-replace-regexp "\r+" "" (sn "dos2unix | sed -e 1d" (inf-messer-get-result-from-inf (concat "history " (q contact) " 1000000"))))))
-    (with-current-buffer (etv history)
+    (with-current-buffer (evipe history)
       (end-of-buffer)
       (beginning-of-line-or-indentation)))
   ;; (let ((contact (inf-messer-fz-contacts)))
-  ;;   (etv )
+  ;;   (evipe )
   ;;   )
   )
 
@@ -283,9 +283,9 @@ Most of this is borrowed from python.el"
          ;; (sn "dos2unix | sed -e 1d" (inf-messer-get-result-from-inf (concat "history " (q contact))))
          ;; (s-replace-regexp "\r+" "" (sn "dos2unix | sed -e 1d" (inf-messer-get-result-from-inf (concat "message " (q contact) " " message))))
          (inf-messer-get-result-from-inf (concat "message " (q contact) " " message))))
-    (etv sentout))
+    (evipe sentout))
   ;; (let ((contact (inf-messer-fz-contacts)))
-  ;;   (etv )
+  ;;   (evipe )
   ;;   )
   )
 
@@ -299,7 +299,7 @@ Most of this is borrowed from python.el"
          (inf-messer-get-result-from-inf (concat "file " (q contact)
                                                  " "
                                                  (q fp) " " message))))
-    (etv sentout)))
+    (evipe sentout)))
 
 (defun s-filter-lines (pred s)
   (string-join
@@ -324,9 +324,9 @@ Most of this is borrowed from python.el"
 
 (defun inf-messer-recent-contacts (&optional unread)
   (interactive)
-  (etv (inf-messer-recent-contacts-sh unread)))
+  (evipe (inf-messer-recent-contacts-sh unread)))
 
-;; (etv (string-join (-filter (lambda (s) (string-match-p "unread" s)) (split-string (inf-messer-recent-sh) "\n")) "\n"))
+;; (evipe (string-join (-filter (lambda (s) (string-match-p "unread" s)) (split-string (inf-messer-recent-sh) "\n")) "\n"))
 
 (defun inf-messer-recent-sh ()
   (let ((sentout
@@ -335,14 +335,14 @@ Most of this is borrowed from python.el"
 
 (defun inf-messer-recent ()
   (interactive)
-  (etv (inf-messer-recent-sh)))
+  (evipe (inf-messer-recent-sh)))
 
 (defun inf-messer-reply (contact message)
   (interactive (list (fz (inf-messer-recent-contacts-sh)) (read-string "m: ")))
 
   (let ((sentout
          (inf-messer-get-result-from-inf (concat "message " (q contact) " " message))))
-    (etv sentout)))
+    (evipe sentout)))
 
 (provide 'inf-messer)
 ;;; inf-messer.el ends here
