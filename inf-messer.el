@@ -241,14 +241,15 @@ Most of this is borrowed from python.el"
     contact))
 
 (defun inf-messer-fz-contacts-and-threads-sh ()
-  (sn "sort"
+  (sn "sort | uniq"
       (concat (awk1 (inf-messer-fz-contacts-sh))
               (awk1 (inf-messer-fz-threads-sh))
               "Shane Mulligan\n")))
 
-(defun inf-messer-fz-contacts-and-threads ()
+(defun inf-messer-fz-contacts-and-threads (&optional prompt)
   (interactive)
-  (chomp (fz (inf-messer-fz-contacts-and-threads-sh))))
+  (chomp (fz (inf-messer-fz-contacts-and-threads-sh)
+             nil nil prompt)))
 
 (defun start-messer-if-not-started ()
   (interactive)
