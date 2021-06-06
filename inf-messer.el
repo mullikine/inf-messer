@@ -248,6 +248,9 @@ Most of this is borrowed from python.el"
 
 (defun inf-messer-fz-contacts-and-threads (&optional prompt)
   (interactive)
+  (if (not (sor prompt))
+      (setq prompt "inf-messer-fz-contacts-and-threads: "))
+
   (chomp (fz (inf-messer-fz-contacts-and-threads-sh)
              nil nil prompt)))
 
